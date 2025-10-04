@@ -65,7 +65,7 @@ export function AdminSidebar() {
               onClick={() => navigate("/passenger-search")}
             >
               <Search className="w-4 h-4 mr-2" />
-              Поиск пассажира
+              Поиск пользователя
             </Button>
           </div>
         )}

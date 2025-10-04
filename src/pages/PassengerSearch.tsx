@@ -2,12 +2,48 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, User, MapPin, CreditCard, MessageSquare, Clock, Ban } from "lucide-react";
+import { Search, User, MapPin, CreditCard, MessageSquare, Clock, Ban, Phone, Mail } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 
-// Пример данных пассажира
+// Демо данные пользователей
+const demoUsers = [
+  {
+    id: "USER001",
+    name: "Алексей Смирнов",
+    phone: "+7 999 123 4567",
+    email: "alexey@example.com",
+    totalTrips: 47,
+    status: "active",
+  },
+  {
+    id: "USER002",
+    name: "Мария Петрова",
+    phone: "+7 999 234 5678",
+    email: "maria@example.com",
+    totalTrips: 32,
+    status: "active",
+  },
+  {
+    id: "USER003",
+    name: "Иван Козлов",
+    phone: "+7 999 345 6789",
+    email: "ivan@example.com",
+    totalTrips: 15,
+    status: "blocked",
+  },
+  {
+    id: "USER004",
+    name: "Ольга Морозова",
+    phone: "+7 999 456 7890",
+    email: "olga@example.com",
+    totalTrips: 68,
+    status: "active",
+  },
+];
+
+// Пример детальных данных пользователя
 const passengerData = {
   id: "USER001",
   name: "Алексей Смирнов",
@@ -84,29 +120,40 @@ const passengerData = {
 export default function PassengerSearch() {
   const [searchQuery, setSearchQuery] = useState("");
   const [passenger, setPassenger] = useState<typeof passengerData | null>(null);
+  const [showDemo, setShowDemo] = useState(true);
 
   const handleSearch = () => {
     if (!searchQuery.trim()) {
-      toast.error("Введите ID, телефон или email пассажира");
+      toast.error("Введите ID, телефон или email пользователя");
       return;
     }
 
     // Имитация поиска
+    setShowDemo(false);
     setTimeout(() => {
       setPassenger(passengerData);
-      toast.success("Пассажир найден");
+      toast.success("Пользователь найден");
     }, 500);
   };
 
+  const handleUserClick = (user: typeof demoUsers[0]) => {
+    setSearchQuery(user.id);
+    setShowDemo(false);
+    setTimeout(() => {
+      setPassenger(passengerData);
+      toast.success(`Пользователь ${user.name} найден`);
+    }, 300);
+  };
+
   const handleBlock = () => {
-    toast.success("Пассажир заблокирован");
+    toast.success("Пользователь заблокирован");
   };
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-foreground">Поиск пассажира</h1>
-        <p className="text-muted-foreground">Найдите пассажира и просмотрите всю информацию о нем</p>
+        <h1 className="text-3xl font-bold text-foreground">Поиск пользователя</h1>
+        <p className="text-muted-foreground">Найдите пользователя и просмотрите всю информацию о нем</p>
       </div>
 
       <Card>
@@ -115,10 +162,13 @@ export default function PassengerSearch() {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input 
-                placeholder="Введите ID, номер телефона или email пассажира..." 
+                placeholder="Введите ID, номер телефона или email пользователя..." 
                 className="pl-10"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  if (e.target.value === "") setShowDemo(true);
+                }}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               />
             </div>
@@ -129,6 +179,52 @@ export default function PassengerSearch() {
           </div>
         </CardContent>
       </Card>
+
+      {showDemo && !passenger && (
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-semibold text-foreground">Недавние пользователи</h2>
+            <span className="text-sm text-muted-foreground">Нажмите на карточку для просмотра</span>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {demoUsers.map((user) => (
+              <Card 
+                key={user.id} 
+                className="cursor-pointer border-2 hover:border-primary/50 transition-all hover:shadow-lg"
+                onClick={() => handleUserClick(user)}
+              >
+                <CardContent className="p-4">
+                  <div className="flex flex-col items-center text-center space-y-3">
+                    <div className="w-16 h-16 rounded-full bg-gradient-primary flex items-center justify-center">
+                      <User className="w-8 h-8 text-white" />
+                    </div>
+                    <div className="space-y-1 w-full">
+                      <h3 className="font-bold text-lg">{user.name}</h3>
+                      <p className="text-xs text-muted-foreground font-mono">{user.id}</p>
+                      <Badge 
+                        variant={user.status === "active" ? "default" : "secondary"}
+                        className="mt-2"
+                      >
+                        {user.status === "active" ? "Активен" : "Заблокирован"}
+                      </Badge>
+                    </div>
+                    <div className="w-full pt-3 border-t space-y-2">
+                      <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                        <Phone className="w-3 h-3" />
+                        <span className="text-xs">{user.phone}</span>
+                      </div>
+                      <div className="flex items-center justify-center gap-2 text-sm">
+                        <MapPin className="w-3 h-3 text-primary" />
+                        <span className="font-bold text-primary">{user.totalTrips} поездок</span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
 
       {passenger && (
         <div className="space-y-6">
