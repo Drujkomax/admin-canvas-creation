@@ -7,9 +7,10 @@ import {
   CarFront, 
   Ticket, 
   Shield,
-  LogOut
+  LogOut,
+  Search
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -22,6 +23,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const menuItems = [
   { title: "Главное", url: "/", icon: Home },
@@ -36,6 +38,7 @@ const menuItems = [
 
 export function AdminSidebar() {
   const { open } = useSidebar();
+  const navigate = useNavigate();
 
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
@@ -54,6 +57,19 @@ export function AdminSidebar() {
       </div>
 
       <SidebarContent>
+        {open && (
+          <div className="p-4 border-b border-sidebar-border">
+            <Button 
+              variant="outline" 
+              className="w-full justify-start"
+              onClick={() => navigate("/passenger-search")}
+            >
+              <Search className="w-4 h-4 mr-2" />
+              Поиск пассажира
+            </Button>
+          </div>
+        )}
+        
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>

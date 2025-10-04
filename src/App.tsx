@@ -12,6 +12,7 @@ import Notifications from "./pages/Notifications";
 import CarModels from "./pages/CarModels";
 import PromoCodes from "./pages/PromoCodes";
 import Moderation from "./pages/Moderation";
+import PassengerSearch from "./pages/PassengerSearch";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/car-models" element={<AdminLayout><CarModels /></AdminLayout>} />
           <Route path="/promo-codes" element={<AdminLayout><PromoCodes /></AdminLayout>} />
           <Route path="/moderation" element={<AdminLayout><Moderation /></AdminLayout>} />
+          <Route path="/passenger-search" element={<AdminLayout><PassengerSearch /></AdminLayout>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
