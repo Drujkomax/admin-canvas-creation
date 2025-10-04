@@ -61,6 +61,7 @@ export default function Complaints() {
                   <div className="flex items-start justify-between">
                     <div className="space-y-3 flex-1">
                       <div className="flex items-center gap-3">
+                        <span className="text-lg font-bold text-foreground">#{complaint.id}</span>
                         <Badge variant={complaint.status === "pending" ? "secondary" : "default"}>
                           {complaint.status === "pending" ? "Ожидает" : "Решена"}
                         </Badge>
