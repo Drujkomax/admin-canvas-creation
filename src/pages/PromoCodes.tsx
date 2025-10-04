@@ -63,7 +63,7 @@ const promoCodes = [
 ];
 
 export default function PromoCodes() {
-  const [personalEmail, setPersonalEmail] = useState("");
+  const [personalUserId, setPersonalUserId] = useState("");
   const [personalDiscount, setPersonalDiscount] = useState("");
   const [personalValidUntil, setPersonalValidUntil] = useState("");
   
@@ -73,8 +73,8 @@ export default function PromoCodes() {
   };
 
   const generatePersonalCode = () => {
-    if (!personalEmail) {
-      toast.error("Введите email пользователя");
+    if (!personalUserId) {
+      toast.error("Введите ID или номер телефона пользователя");
       return;
     }
     if (!personalDiscount) {
@@ -83,13 +83,13 @@ export default function PromoCodes() {
     }
     
     const randomPart = Math.random().toString(36).substring(2, 8).toUpperCase();
-    const emailPrefix = personalEmail.split('@')[0].substring(0, 4).toUpperCase();
-    const generatedCode = `${emailPrefix}-${randomPart}`;
+    const userPrefix = personalUserId.replace(/[^a-zA-Z0-9]/g, '').substring(0, 4).toUpperCase();
+    const generatedCode = `${userPrefix}-${randomPart}`;
     
     toast.success(`Персональный промокод создан: ${generatedCode}`);
     
     // Сброс формы
-    setPersonalEmail("");
+    setPersonalUserId("");
     setPersonalDiscount("");
     setPersonalValidUntil("");
     
@@ -120,12 +120,12 @@ export default function PromoCodes() {
               </DialogHeader>
               <div className="space-y-4 py-4">
                 <div className="space-y-2">
-                  <Label htmlFor="personalEmail">Email пользователя</Label>
+                  <Label htmlFor="personalUserId">ID пользователя или номер телефона</Label>
                   <Input 
-                    id="personalEmail" 
-                    placeholder="user@example.com"
-                    value={personalEmail}
-                    onChange={(e) => setPersonalEmail(e.target.value)}
+                    id="personalUserId" 
+                    placeholder="user123 или +79991234567"
+                    value={personalUserId}
+                    onChange={(e) => setPersonalUserId(e.target.value)}
                   />
                 </div>
                 <div className="space-y-2">
@@ -160,7 +160,7 @@ export default function PromoCodes() {
                 </div>
                 <div className="p-3 bg-accent/50 rounded-md border border-primary/20">
                   <p className="text-sm text-muted-foreground">
-                    💡 Промокод будет автоматически сгенерирован на основе email пользователя
+                    💡 Промокод будет автоматически сгенерирован на основе ID или номера телефона
                   </p>
                 </div>
               </div>
