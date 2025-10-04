@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Plus, Edit, Trash2, Copy, Ticket } from "lucide-react";
+import { Search, Plus, Edit, Trash2, Copy, Ticket, UserPlus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
+import { useState } from "react";
 
 const promoCodes = [
   {
@@ -62,9 +63,37 @@ const promoCodes = [
 ];
 
 export default function PromoCodes() {
+  const [personalEmail, setPersonalEmail] = useState("");
+  const [personalDiscount, setPersonalDiscount] = useState("");
+  const [personalValidUntil, setPersonalValidUntil] = useState("");
+  
   const copyCode = (code: string) => {
     navigator.clipboard.writeText(code);
     toast.success("Промокод скопирован!");
+  };
+
+  const generatePersonalCode = () => {
+    if (!personalEmail) {
+      toast.error("Введите email пользователя");
+      return;
+    }
+    if (!personalDiscount) {
+      toast.error("Введите скидку");
+      return;
+    }
+    
+    const randomPart = Math.random().toString(36).substring(2, 8).toUpperCase();
+    const emailPrefix = personalEmail.split('@')[0].substring(0, 4).toUpperCase();
+    const generatedCode = `${emailPrefix}-${randomPart}`;
+    
+    toast.success(`Персональный промокод создан: ${generatedCode}`);
+    
+    // Сброс формы
+    setPersonalEmail("");
+    setPersonalDiscount("");
+    setPersonalValidUntil("");
+    
+    return generatedCode;
   };
 
   return (
@@ -74,7 +103,76 @@ export default function PromoCodes() {
           <h1 className="text-3xl font-bold text-foreground">Промокоды</h1>
           <p className="text-muted-foreground">Управление промокодами и скидками</p>
         </div>
-        <Dialog>
+        <div className="flex gap-3">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="border-primary/50">
+                <UserPlus className="w-4 h-4 mr-2" />
+                Персональный промокод
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="bg-popover">
+              <DialogHeader>
+                <DialogTitle>Создать персональный промокод</DialogTitle>
+                <DialogDescription>
+                  Создайте уникальный промокод для конкретного пользователя
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 py-4">
+                <div className="space-y-2">
+                  <Label htmlFor="personalEmail">Email пользователя</Label>
+                  <Input 
+                    id="personalEmail" 
+                    placeholder="user@example.com"
+                    value={personalEmail}
+                    onChange={(e) => setPersonalEmail(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="personalDiscount">Скидка</Label>
+                  <div className="flex gap-2">
+                    <Input 
+                      id="personalDiscount" 
+                      placeholder="20" 
+                      type="number"
+                      value={personalDiscount}
+                      onChange={(e) => setPersonalDiscount(e.target.value)}
+                    />
+                    <Select defaultValue="percent">
+                      <SelectTrigger className="w-24">
+                        <SelectValue placeholder="%" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-popover">
+                        <SelectItem value="percent">%</SelectItem>
+                        <SelectItem value="fixed">₽</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="personalValidUntil">Действителен до</Label>
+                  <Input 
+                    id="personalValidUntil" 
+                    type="date"
+                    value={personalValidUntil}
+                    onChange={(e) => setPersonalValidUntil(e.target.value)}
+                  />
+                </div>
+                <div className="p-3 bg-accent/50 rounded-md border border-primary/20">
+                  <p className="text-sm text-muted-foreground">
+                    💡 Промокод будет автоматически сгенерирован на основе email пользователя
+                  </p>
+                </div>
+              </div>
+              <DialogFooter>
+                <Button variant="outline">Отмена</Button>
+                <Button className="bg-gradient-primary" onClick={generatePersonalCode}>
+                  Создать промокод
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+          <Dialog>
           <DialogTrigger asChild>
             <Button className="bg-gradient-primary shadow-glow">
               <Plus className="w-4 h-4 mr-2" />
@@ -123,6 +221,7 @@ export default function PromoCodes() {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+        </div>
       </div>
 
       <Card>
