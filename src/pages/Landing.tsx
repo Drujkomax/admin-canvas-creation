@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Car, Shield, Clock, Star, Users, MapPin, Search, Calendar, ArrowRight, User } from "lucide-react";
 import logo from "@/assets/yoldosh-logo.png";
-import heroBg from "@/assets/hero-bg.png";
 import { useState } from "react";
 
 const Landing = () => {
@@ -86,7 +85,7 @@ const Landing = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${heroBg})` }}>
+      <section className="pt-32 pb-20 px-4">
         <div className="container mx-auto">
           <div className="text-center space-y-6 mb-12">
             <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight">
