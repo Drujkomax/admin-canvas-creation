@@ -26,14 +26,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const menuItems = [
-  { title: "Главное", url: "/", icon: Home },
-  { title: "Заявки водителей", url: "/drivers", icon: UserCheck },
-  { title: "Жалобы", url: "/complaints", icon: MessageSquareWarning },
-  { title: "Поездки", url: "/trips", icon: Car },
-  { title: "Уведомления", url: "/notifications", icon: Bell },
-  { title: "Модели машин", url: "/car-models", icon: CarFront },
-  { title: "Промокоды", url: "/promo-codes", icon: Ticket },
-  { title: "Модерация", url: "/moderation", icon: Shield },
+  { title: "Главное", url: "/admin", icon: Home },
+  { title: "Заявки водителей", url: "/admin/drivers", icon: UserCheck },
+  { title: "Жалобы", url: "/admin/complaints", icon: MessageSquareWarning },
+  { title: "Поездки", url: "/admin/trips", icon: Car },
+  { title: "Уведомления", url: "/admin/notifications", icon: Bell },
+  { title: "Модели машин", url: "/admin/car-models", icon: CarFront },
+  { title: "Промокоды", url: "/admin/promo-codes", icon: Ticket },
+  { title: "Модерация", url: "/admin/moderation", icon: Shield },
 ];
 
 export function AdminSidebar() {
@@ -62,7 +62,7 @@ export function AdminSidebar() {
             <Button 
               variant="outline" 
               className="w-full justify-start"
-              onClick={() => navigate("/passenger-search")}
+              onClick={() => navigate("/admin/passenger-search")}
             >
               <Search className="w-4 h-4 mr-2" />
               Поиск пользователя
@@ -78,7 +78,7 @@ export function AdminSidebar() {
                   <SidebarMenuButton asChild tooltip={item.title}>
                     <NavLink 
                       to={item.url}
-                      end={item.url === "/"}
+                      end={item.url === "/admin"}
                       className={({ isActive }) =>
                         isActive 
                           ? "bg-sidebar-accent text-sidebar-primary font-medium" 

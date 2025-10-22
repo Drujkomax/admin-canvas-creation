@@ -15,6 +15,7 @@ import PromoCodes from "./pages/PromoCodes";
 import Moderation from "./pages/Moderation";
 import PassengerSearch from "./pages/PassengerSearch";
 import NotFound from "./pages/NotFound";
+import Landing from "./pages/Landing";
 
 const queryClient = new QueryClient();
 
@@ -26,15 +27,16 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
         <Routes>
-          <Route path="/" element={<AdminLayout><Dashboard /></AdminLayout>} />
-          <Route path="/drivers" element={<AdminLayout><Drivers /></AdminLayout>} />
-          <Route path="/complaints" element={<AdminLayout><Complaints /></AdminLayout>} />
-          <Route path="/trips" element={<AdminLayout><Trips /></AdminLayout>} />
-          <Route path="/notifications" element={<AdminLayout><Notifications /></AdminLayout>} />
-          <Route path="/car-models" element={<AdminLayout><CarModels /></AdminLayout>} />
-          <Route path="/promo-codes" element={<AdminLayout><PromoCodes /></AdminLayout>} />
-          <Route path="/moderation" element={<AdminLayout><Moderation /></AdminLayout>} />
-          <Route path="/passenger-search" element={<AdminLayout><PassengerSearch /></AdminLayout>} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/admin" element={<AdminLayout><Dashboard /></AdminLayout>} />
+          <Route path="/admin/drivers" element={<AdminLayout><Drivers /></AdminLayout>} />
+          <Route path="/admin/complaints" element={<AdminLayout><Complaints /></AdminLayout>} />
+          <Route path="/admin/trips" element={<AdminLayout><Trips /></AdminLayout>} />
+          <Route path="/admin/notifications" element={<AdminLayout><Notifications /></AdminLayout>} />
+          <Route path="/admin/car-models" element={<AdminLayout><CarModels /></AdminLayout>} />
+          <Route path="/admin/promo-codes" element={<AdminLayout><PromoCodes /></AdminLayout>} />
+          <Route path="/admin/moderation" element={<AdminLayout><Moderation /></AdminLayout>} />
+          <Route path="/admin/passenger-search" element={<AdminLayout><PassengerSearch /></AdminLayout>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
