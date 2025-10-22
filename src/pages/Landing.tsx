@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Car, Shield, Clock, Star, Users, MapPin, Search, Calendar, ArrowRight } from "lucide-react";
+import { Car, Shield, Clock, Star, Users, MapPin, Search, Calendar, ArrowRight, User } from "lucide-react";
 import logo from "@/assets/yoldosh-logo.png";
 import { useState } from "react";
 
@@ -96,71 +96,80 @@ const Landing = () => {
           </div>
 
           {/* Search Form */}
-          <Card className="max-w-4xl mx-auto shadow-xl border border-primary/20 bg-card/95 backdrop-blur-sm animate-fade-in">
-            <CardContent className="p-4">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
-                {/* From Field */}
-                <div className="md:col-span-3">
-                  <label className="text-xs font-medium text-muted-foreground mb-1 block">Откуда</label>
-                  <Input 
-                    placeholder="Город" 
-                    value={from}
-                    onChange={(e) => setFrom(e.target.value)}
-                    className="h-11"
-                  />
-                </div>
-
-                {/* To Field */}
-                <div className="md:col-span-3">
-                  <label className="text-xs font-medium text-muted-foreground mb-1 block">Куда</label>
-                  <Input 
-                    placeholder="Город" 
-                    value={to}
-                    onChange={(e) => setTo(e.target.value)}
-                    className="h-11"
-                  />
-                </div>
-
-                {/* Date Field */}
-                <div className="md:col-span-2">
-                  <label className="text-xs font-medium text-muted-foreground mb-1 block">Дата</label>
-                  <Input 
-                    type="date" 
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className="h-11"
-                  />
-                </div>
-
-                {/* Passengers Field */}
-                <div className="md:col-span-2">
-                  <label className="text-xs font-medium text-muted-foreground mb-1 block">Пассажиры</label>
-                  <Select value={passengers} onValueChange={setPassengers}>
-                    <SelectTrigger className="h-11">
-                      <SelectValue placeholder="1" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1">1</SelectItem>
-                      <SelectItem value="2">2</SelectItem>
-                      <SelectItem value="3">3</SelectItem>
-                      <SelectItem value="4">4</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Search Button */}
-                <div className="md:col-span-2">
-                  <Button 
-                    onClick={handleSearch} 
-                    className="w-full h-11"
-                  >
-                    <Search className="w-4 h-4 md:mr-2" />
-                    <span className="hidden md:inline">Поиск</span>
-                  </Button>
-                </div>
+          <div className="max-w-6xl mx-auto bg-background rounded-full shadow-2xl border border-border p-2 flex items-center gap-2 animate-fade-in">
+            {/* From Field */}
+            <div className="flex items-center gap-3 px-6 py-3 flex-1 hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
+              <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center flex-shrink-0">
+                <div className="w-2 h-2 rounded-full bg-primary"></div>
               </div>
-            </CardContent>
-          </Card>
+              <div className="flex-1 min-w-0">
+                <Input 
+                  placeholder="Откуда" 
+                  value={from}
+                  onChange={(e) => setFrom(e.target.value)}
+                  className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground"
+                />
+              </div>
+            </div>
+
+            <div className="h-8 w-px bg-border"></div>
+
+            {/* To Field */}
+            <div className="flex items-center gap-3 px-6 py-3 flex-1 hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
+              <div className="w-5 h-5 rounded-full border-2 border-muted-foreground flex items-center justify-center flex-shrink-0">
+                <div className="w-2 h-2 rounded-full bg-muted-foreground"></div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <Input 
+                  placeholder="Куда" 
+                  value={to}
+                  onChange={(e) => setTo(e.target.value)}
+                  className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground"
+                />
+              </div>
+            </div>
+
+            <div className="h-8 w-px bg-border"></div>
+
+            {/* Date Field */}
+            <div className="flex items-center gap-3 px-6 py-3 min-w-[140px] hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
+              <Calendar className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+              <Input 
+                type="date" 
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer"
+                placeholder="Сегодня"
+              />
+            </div>
+
+            <div className="h-8 w-px bg-border"></div>
+
+            {/* Passengers Field */}
+            <div className="flex items-center gap-3 px-6 py-3 min-w-[160px] hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
+              <User className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+              <Select value={passengers} onValueChange={setPassengers}>
+                <SelectTrigger className="border-0 bg-transparent p-0 h-auto text-base font-medium focus:ring-0 focus:ring-offset-0 [&>span]:text-left">
+                  <SelectValue placeholder="1 пассажир" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1">1 пассажир</SelectItem>
+                  <SelectItem value="2">2 пассажира</SelectItem>
+                  <SelectItem value="3">3 пассажира</SelectItem>
+                  <SelectItem value="4">4 пассажира</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Search Button */}
+            <Button 
+              onClick={handleSearch} 
+              size="lg" 
+              className="rounded-full px-12 py-6 text-lg font-semibold bg-primary hover:bg-primary/90 transition-all h-auto"
+            >
+              Поиск
+            </Button>
+          </div>
 
           {/* Stats */}
           <div className="flex justify-center items-center gap-12 mt-12 flex-wrap">
