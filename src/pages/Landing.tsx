@@ -1,9 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Car, Shield, Clock, Star, Users, MapPin } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Car, Shield, Clock, Star, Users, MapPin, Search, Calendar } from "lucide-react";
 import logo from "@/assets/yoldosh-logo.png";
+import { useState } from "react";
 
 const Landing = () => {
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [date, setDate] = useState("");
+  const [passengers, setPassengers] = useState("1");
+
+  const handleSearch = () => {
+    console.log({ from, to, date, passengers });
+    // Здесь будет логика поиска
+  };
+
   const features = [
     {
       icon: Car,
@@ -73,45 +86,169 @@ const Landing = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                🚀 Ваш надежный спутник в пути
-              </div>
-              <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight">
-                Поездки с{" "}
-                <span className="text-primary">Yo'ldosh</span>
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                Быстро, безопасно и комфортно. Найдите водителя за минуту или станьте водителем и начните зарабатывать уже сегодня.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="text-lg px-8">
-                  Скачать для пассажиров
-                </Button>
-                <Button size="lg" variant="outline" className="text-lg px-8">
-                  Стать водителем
-                </Button>
-              </div>
-              <div className="flex items-center gap-8 pt-4">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-3xl font-bold text-primary">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+          <div className="text-center space-y-6 mb-12">
+            <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight">
+              Поездки на ваш выбор по низким ценам
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Найдите попутчиков или станьте водителем с <span className="text-primary font-semibold">Yo'ldosh</span>
+            </p>
+          </div>
+
+          {/* Search Form */}
+          <Card className="max-w-5xl mx-auto shadow-2xl border-border">
+            <CardContent className="p-8">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <div className="md:col-span-1">
+                  <label className="text-sm font-medium text-foreground mb-2 block">Откуда</label>
+                  <Input 
+                    placeholder="Город отправления" 
+                    value={from}
+                    onChange={(e) => setFrom(e.target.value)}
+                    className="h-12"
+                  />
+                </div>
+                <div className="md:col-span-1">
+                  <label className="text-sm font-medium text-foreground mb-2 block">Куда</label>
+                  <Input 
+                    placeholder="Город прибытия" 
+                    value={to}
+                    onChange={(e) => setTo(e.target.value)}
+                    className="h-12"
+                  />
+                </div>
+                <div className="md:col-span-1">
+                  <label className="text-sm font-medium text-foreground mb-2 block">Дата</label>
+                  <div className="relative">
+                    <Input 
+                      type="date" 
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      className="h-12"
+                    />
+                    <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
                   </div>
-                ))}
+                </div>
+                <div className="md:col-span-1">
+                  <label className="text-sm font-medium text-foreground mb-2 block">Пассажиры</label>
+                  <Select value={passengers} onValueChange={setPassengers}>
+                    <SelectTrigger className="h-12">
+                      <SelectValue placeholder="1" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1">1 пассажир</SelectItem>
+                      <SelectItem value="2">2 пассажира</SelectItem>
+                      <SelectItem value="3">3 пассажира</SelectItem>
+                      <SelectItem value="4">4 пассажира</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="md:col-span-1 flex items-end">
+                  <Button 
+                    onClick={handleSearch} 
+                    size="lg" 
+                    className="w-full h-12"
+                  >
+                    <Search className="w-5 h-5 mr-2" />
+                    Поиск
+                  </Button>
+                </div>
               </div>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/10 rounded-3xl blur-3xl"></div>
-              <div className="relative bg-card rounded-3xl p-8 shadow-lg border border-border">
-                <img 
-                  src={logo} 
-                  alt="Yo'ldosh App" 
-                  className="w-full h-auto"
-                />
+            </CardContent>
+          </Card>
+
+          {/* Stats */}
+          <div className="flex justify-center items-center gap-12 mt-12 flex-wrap">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl font-bold text-primary">{stat.value}</div>
+                <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Travel Options */}
+      <section className="py-20 px-4 bg-muted/30">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Что вы выберете для поездки сегодня?
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <Card className="border-border hover:border-primary transition-all hover:shadow-xl">
+              <CardContent className="p-8 space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                  <Car className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground">
+                  Машина с попутчиками
+                </h3>
+                <div className="space-y-3 text-muted-foreground">
+                  <p>✓ Разделите расходы на поездку до вашего места назначения</p>
+                  <p>✓ Доверяйте своим попутчикам</p>
+                  <p>✓ Мы стараемся узнать ваших будущих попутчиков как можно лучше</p>
+                  <p>✓ В нашем приложении легко разобраться</p>
+                </div>
+                <Button className="w-full mt-4" size="lg">
+                  Найти поездку
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border hover:border-primary transition-all hover:shadow-xl">
+              <CardContent className="p-8 space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                  <Users className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground">
+                  Стать водителем
+                </h3>
+                <div className="space-y-3 text-muted-foreground">
+                  <p>✓ Экономьте на бензине, беря попутчиков</p>
+                  <p>✓ Зарегистрируйте профиль водителя</p>
+                  <p>✓ Опубликовать поездку можно за пару минут</p>
+                  <p>✓ Путешествуйте и зарабатывайте одновременно</p>
+                </div>
+                <Button variant="outline" className="w-full mt-4" size="lg">
+                  Опубликовать поездку
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Routes */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Популярные маршруты
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              { from: "Ташкент", to: "Самарканд", price: "45 000" },
+              { from: "Ташкент", to: "Бухара", price: "50 000" },
+              { from: "Самарканд", to: "Бухара", price: "35 000" },
+            ].map((route, index) => (
+              <Card key={index} className="border-border hover:border-primary transition-all hover:shadow-lg cursor-pointer">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-lg font-semibold text-foreground">{route.from}</span>
+                    <MapPin className="w-5 h-5 text-primary" />
+                    <span className="text-lg font-semibold text-foreground">{route.to}</span>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-sm text-muted-foreground">От</p>
+                    <p className="text-2xl font-bold text-primary">{route.price} сум</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
