@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Car, Shield, Clock, Star, Users, MapPin, Search, Calendar } from "lucide-react";
+import { Car, Shield, Clock, Star, Users, MapPin, Search, Calendar, ArrowRight } from "lucide-react";
 import logo from "@/assets/yoldosh-logo.png";
 import { useState } from "react";
 
@@ -96,63 +96,99 @@ const Landing = () => {
           </div>
 
           {/* Search Form */}
-          <Card className="max-w-5xl mx-auto shadow-2xl border-border">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                <div className="md:col-span-1">
-                  <label className="text-sm font-medium text-foreground mb-2 block">Откуда</label>
-                  <Input 
-                    placeholder="Город отправления" 
-                    value={from}
-                    onChange={(e) => setFrom(e.target.value)}
-                    className="h-12"
-                  />
-                </div>
-                <div className="md:col-span-1">
-                  <label className="text-sm font-medium text-foreground mb-2 block">Куда</label>
-                  <Input 
-                    placeholder="Город прибытия" 
-                    value={to}
-                    onChange={(e) => setTo(e.target.value)}
-                    className="h-12"
-                  />
-                </div>
-                <div className="md:col-span-1">
-                  <label className="text-sm font-medium text-foreground mb-2 block">Дата</label>
-                  <div className="relative">
-                    <Input 
-                      type="date" 
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      className="h-12"
-                    />
-                    <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
+          <Card className="max-w-6xl mx-auto shadow-2xl border-2 border-primary/20 bg-card/95 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 animate-fade-in">
+            <CardContent className="p-6 md:p-10">
+              <div className="space-y-6">
+                {/* Main Search Fields */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* From Field */}
+                  <div className="space-y-2 group">
+                    <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      Откуда
+                    </label>
+                    <div className="relative">
+                      <Input 
+                        placeholder="Введите город отправления" 
+                        value={from}
+                        onChange={(e) => setFrom(e.target.value)}
+                        className="h-14 text-lg pl-4 pr-4 border-2 border-border focus:border-primary transition-all duration-200 group-hover:border-primary/50"
+                      />
+                    </div>
+                  </div>
+
+                  {/* To Field */}
+                  <div className="space-y-2 group">
+                    <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      Куда
+                    </label>
+                    <div className="relative">
+                      <Input 
+                        placeholder="Введите город прибытия" 
+                        value={to}
+                        onChange={(e) => setTo(e.target.value)}
+                        className="h-14 text-lg pl-4 pr-4 border-2 border-border focus:border-primary transition-all duration-200 group-hover:border-primary/50"
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="md:col-span-1">
-                  <label className="text-sm font-medium text-foreground mb-2 block">Пассажиры</label>
-                  <Select value={passengers} onValueChange={setPassengers}>
-                    <SelectTrigger className="h-12">
-                      <SelectValue placeholder="1" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1">1 пассажир</SelectItem>
-                      <SelectItem value="2">2 пассажира</SelectItem>
-                      <SelectItem value="3">3 пассажира</SelectItem>
-                      <SelectItem value="4">4 пассажира</SelectItem>
-                    </SelectContent>
-                  </Select>
+
+                {/* Date and Passengers Row */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {/* Date Field */}
+                  <div className="space-y-2 group md:col-span-1">
+                    <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-primary" />
+                      Дата поездки
+                    </label>
+                    <div className="relative">
+                      <Input 
+                        type="date" 
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                        className="h-14 text-lg border-2 border-border focus:border-primary transition-all duration-200 group-hover:border-primary/50"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Passengers Field */}
+                  <div className="space-y-2 group md:col-span-1">
+                    <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <Users className="w-4 h-4 text-primary" />
+                      Пассажиры
+                    </label>
+                    <Select value={passengers} onValueChange={setPassengers}>
+                      <SelectTrigger className="h-14 text-lg border-2 border-border focus:border-primary transition-all duration-200 group-hover:border-primary/50">
+                        <SelectValue placeholder="Выберите количество" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1">1 пассажир</SelectItem>
+                        <SelectItem value="2">2 пассажира</SelectItem>
+                        <SelectItem value="3">3 пассажира</SelectItem>
+                        <SelectItem value="4">4 пассажира</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Search Button */}
+                  <div className="flex items-end md:col-span-1">
+                    <Button 
+                      onClick={handleSearch} 
+                      size="lg" 
+                      className="w-full h-14 text-lg font-semibold hover-scale shadow-lg hover:shadow-xl transition-all duration-200 group"
+                    >
+                      <Search className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-200" />
+                      Найти поездку
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                    </Button>
+                  </div>
                 </div>
-                <div className="md:col-span-1 flex items-end">
-                  <Button 
-                    onClick={handleSearch} 
-                    size="lg" 
-                    className="w-full h-12"
-                  >
-                    <Search className="w-5 h-5 mr-2" />
-                    Поиск
-                  </Button>
-                </div>
+
+                {/* Helper Text */}
+                <p className="text-sm text-muted-foreground text-center pt-2">
+                  🚗 Более 10,000 водителей готовы помочь вам добраться до места назначения
+                </p>
               </div>
             </CardContent>
           </Card>
