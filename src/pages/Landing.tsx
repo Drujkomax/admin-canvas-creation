@@ -520,39 +520,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section id="how-it-works" className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              {t('howItWorksTitle')}
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              {t('howItWorksSubtitle')}
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { step: "01", title: t('step1'), desc: t('step1Desc') },
-              { step: "02", title: t('step2'), desc: t('step2Desc') },
-              { step: "03", title: t('step3'), desc: t('step3Desc') }
-            ].map((item, index) => (
-              <div key={index} className="text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto">
-                  {item.step}
-                </div>
-                <h3 className="text-2xl font-semibold text-foreground">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-primary via-primary to-primary/80">
         <div className="container mx-auto">
