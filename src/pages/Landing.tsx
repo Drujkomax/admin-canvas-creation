@@ -130,13 +130,90 @@ const Landing = () => {
           </div>
 
           {/* Search Form */}
-          <div className="max-w-6xl mx-auto bg-background rounded-full shadow-2xl border border-border p-2 flex items-center gap-2 animate-fade-in">
-            {/* From Field */}
-            <div className="flex items-center gap-3 px-6 py-3 flex-1 hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
-              <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center flex-shrink-0">
-                <div className="w-2 h-2 rounded-full bg-primary"></div>
+          <div className="max-w-6xl mx-auto bg-background rounded-3xl md:rounded-full shadow-2xl border border-border p-2 md:p-2 animate-fade-in">
+            {/* Desktop Layout */}
+            <div className="hidden md:flex items-center gap-2">
+              {/* From Field */}
+              <div className="flex items-center gap-3 px-6 py-3 flex-1 hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
+                <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-primary"></div>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <Input 
+                    placeholder={t('searchPlaceholderFrom')}
+                    value={from}
+                    onChange={(e) => setFrom(e.target.value)}
+                    className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground"
+                  />
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
+
+              <div className="h-8 w-px bg-border"></div>
+
+              {/* To Field */}
+              <div className="flex items-center gap-3 px-6 py-3 flex-1 hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
+                <div className="w-5 h-5 rounded-full border-2 border-muted-foreground flex items-center justify-center flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-muted-foreground"></div>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <Input 
+                    placeholder={t('searchPlaceholderTo')}
+                    value={to}
+                    onChange={(e) => setTo(e.target.value)}
+                    className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground"
+                  />
+                </div>
+              </div>
+
+              <div className="h-8 w-px bg-border"></div>
+
+              {/* Date Field */}
+              <div className="flex items-center gap-3 px-6 py-3 min-w-[140px] hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
+                <Calendar className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                <Input 
+                  type="date" 
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer"
+                  placeholder={t('searchDate')}
+                />
+              </div>
+
+              <div className="h-8 w-px bg-border"></div>
+
+              {/* Passengers Field */}
+              <div className="flex items-center gap-3 px-6 py-3 min-w-[160px] hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
+                <User className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                <Select value={passengers} onValueChange={setPassengers}>
+                  <SelectTrigger className="border-0 bg-transparent p-0 h-auto text-base font-medium focus:ring-0 focus:ring-offset-0 [&>span]:text-left">
+                    <SelectValue placeholder={getPassengerLabel("1")} />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border-border">
+                    <SelectItem value="1">{getPassengerLabel("1")}</SelectItem>
+                    <SelectItem value="2">{getPassengerLabel("2")}</SelectItem>
+                    <SelectItem value="3">{getPassengerLabel("3")}</SelectItem>
+                    <SelectItem value="4">{getPassengerLabel("4")}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Search Button */}
+              <Button 
+                onClick={handleSearch} 
+                size="lg" 
+                className="rounded-full px-12 py-6 text-lg font-semibold bg-primary hover:bg-primary/90 transition-all h-auto"
+              >
+                {t('search')}
+              </Button>
+            </div>
+
+            {/* Mobile Layout */}
+            <div className="flex md:hidden flex-col p-4 gap-0">
+              {/* From Field */}
+              <div className="flex items-center gap-4 py-4 border-b border-border">
+                <div className="w-6 h-6 rounded-full border-2 border-primary flex items-center justify-center flex-shrink-0">
+                  <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
+                </div>
                 <Input 
                   placeholder={t('searchPlaceholderFrom')}
                   value={from}
@@ -144,16 +221,12 @@ const Landing = () => {
                   className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground"
                 />
               </div>
-            </div>
 
-            <div className="h-8 w-px bg-border"></div>
-
-            {/* To Field */}
-            <div className="flex items-center gap-3 px-6 py-3 flex-1 hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
-              <div className="w-5 h-5 rounded-full border-2 border-muted-foreground flex items-center justify-center flex-shrink-0">
-                <div className="w-2 h-2 rounded-full bg-muted-foreground"></div>
-              </div>
-              <div className="flex-1 min-w-0">
+              {/* To Field */}
+              <div className="flex items-center gap-4 py-4 border-b border-border">
+                <div className="w-6 h-6 rounded-full border-2 border-muted-foreground flex items-center justify-center flex-shrink-0">
+                  <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground"></div>
+                </div>
                 <Input 
                   placeholder={t('searchPlaceholderTo')}
                   value={to}
@@ -161,48 +234,44 @@ const Landing = () => {
                   className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground"
                 />
               </div>
+
+              {/* Date Field */}
+              <div className="flex items-center gap-4 py-4 border-b border-border">
+                <Calendar className="w-6 h-6 text-muted-foreground flex-shrink-0" />
+                <Input 
+                  type="date" 
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer placeholder:text-muted-foreground"
+                  placeholder={t('searchDate')}
+                />
+              </div>
+
+              {/* Passengers Field */}
+              <div className="flex items-center gap-4 py-4 mb-4">
+                <User className="w-6 h-6 text-muted-foreground flex-shrink-0" />
+                <Select value={passengers} onValueChange={setPassengers}>
+                  <SelectTrigger className="border-0 bg-transparent p-0 h-auto text-base font-medium focus:ring-0 focus:ring-offset-0 [&>span]:text-left">
+                    <SelectValue placeholder={getPassengerLabel("1")} />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border-border">
+                    <SelectItem value="1">{getPassengerLabel("1")}</SelectItem>
+                    <SelectItem value="2">{getPassengerLabel("2")}</SelectItem>
+                    <SelectItem value="3">{getPassengerLabel("3")}</SelectItem>
+                    <SelectItem value="4">{getPassengerLabel("4")}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Search Button */}
+              <Button 
+                onClick={handleSearch} 
+                size="lg" 
+                className="w-full rounded-xl py-6 text-lg font-semibold bg-primary hover:bg-primary/90 transition-all"
+              >
+                {t('search')}
+              </Button>
             </div>
-
-            <div className="h-8 w-px bg-border"></div>
-
-            {/* Date Field */}
-            <div className="flex items-center gap-3 px-6 py-3 min-w-[140px] hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
-              <Calendar className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-              <Input 
-                type="date" 
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer"
-                placeholder={t('searchDate')}
-              />
-            </div>
-
-            <div className="h-8 w-px bg-border"></div>
-
-            {/* Passengers Field */}
-            <div className="flex items-center gap-3 px-6 py-3 min-w-[160px] hover:bg-muted/50 rounded-full transition-colors cursor-pointer">
-              <User className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-              <Select value={passengers} onValueChange={setPassengers}>
-                <SelectTrigger className="border-0 bg-transparent p-0 h-auto text-base font-medium focus:ring-0 focus:ring-offset-0 [&>span]:text-left">
-                  <SelectValue placeholder={getPassengerLabel("1")} />
-                </SelectTrigger>
-                <SelectContent className="bg-background border-border">
-                  <SelectItem value="1">{getPassengerLabel("1")}</SelectItem>
-                  <SelectItem value="2">{getPassengerLabel("2")}</SelectItem>
-                  <SelectItem value="3">{getPassengerLabel("3")}</SelectItem>
-                  <SelectItem value="4">{getPassengerLabel("4")}</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Search Button */}
-            <Button 
-              onClick={handleSearch} 
-              size="lg" 
-              className="rounded-full px-12 py-6 text-lg font-semibold bg-primary hover:bg-primary/90 transition-all h-auto"
-            >
-              {t('search')}
-            </Button>
           </div>
 
           {/* Stats */}
