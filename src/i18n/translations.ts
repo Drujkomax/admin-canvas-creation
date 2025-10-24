@@ -26,20 +26,16 @@ export const translations = {
     rating: "Рейтинг",
     support: "Поддержка",
     
-    // Travel Options
-    travelOptionsTitle: "Что вы выберете для поездки сегодня?",
-    carWithPassengers: "Машина с попутчиками",
-    carBenefit1: "✓ Разделите расходы на поездку до вашего места назначения",
-    carBenefit2: "✓ Доверяйте своим попутчикам",
-    carBenefit3: "✓ Мы стараемся узнать ваших будущих попутчиков как можно лучше",
-    carBenefit4: "✓ В нашем приложении легко разобраться",
-    findTrip: "Найти поездку",
-    becomeDriver: "Стать водителем",
-    driverBenefit1: "✓ Экономьте на бензине, беря попутчиков",
-    driverBenefit2: "✓ Зарегистрируйте профиль водителя",
-    driverBenefit3: "✓ Опубликовать поездку можно за пару минут",
-    driverBenefit4: "✓ Путешествуйте и зарабатывайте одновременно",
-    publishTrip: "Опубликовать поездку",
+    // How It Works Steps
+    howItWorksStepsTitle: "Как это работает",
+    howItWorksStepsSubtitle: "Начать просто — следуй нескольким шагам и поезжай с Yo'ldosh.",
+    stepCard1Title: "🎯 Выбирай поездку по выгодной цене",
+    stepCard1Desc: "Найди вариант, который идеально подходит под твой график и бюджет.",
+    stepCard2Title: "💰 Доверяй тем, с кем едешь",
+    stepCard2Desc: "Все водители проходят верификацию по паспорту и проверку профиля, чтобы ваши поездки были безопасными и спокойными.",
+    stepCard3Title: "⚡ Свайп, клик — и ты в пути!",
+    stepCard3Desc: "Бронируй поездку за секунды через простое и удобное приложение.",
+    readMore: "Read more",
     
     // Popular Routes
     popularRoutes: "Популярные маршруты",
@@ -118,20 +114,16 @@ export const translations = {
     rating: "Reyting",
     support: "Qo'llab-quvvatlash",
     
-    // Travel Options
-    travelOptionsTitle: "Bugun sayohat uchun nimani tanlaysiz?",
-    carWithPassengers: "Yo'lovchilar bilan mashina",
-    carBenefit1: "✓ Manzilingizga borish xarajatlarini bo'lishing",
-    carBenefit2: "✓ Yo'lovchilaringizga ishoning",
-    carBenefit3: "✓ Biz kelajakdagi yo'lovchilaringizni yaxshi bilib olishga intilamiz",
-    carBenefit4: "✓ Ilovamizda tushunish oson",
-    findTrip: "Sayohat topish",
-    becomeDriver: "Haydovchi bo'lish",
-    driverBenefit1: "✓ Yo'lovchilarni olib, benzinga tejang",
-    driverBenefit2: "✓ Haydovchi profilini ro'yxatdan o'tkazing",
-    driverBenefit3: "✓ Sayohatni bir necha daqiqada e'lon qilishingiz mumkin",
-    driverBenefit4: "✓ Sayohat qiling va bir vaqtning o'zida pul ishlang",
-    publishTrip: "Sayohatni e'lon qilish",
+    // How It Works Steps
+    howItWorksStepsTitle: "Qanday ishlaydi",
+    howItWorksStepsSubtitle: "Boshlash juda oson — quyidagi oddiy qadamlarni bajaring va safaringizni Yo'ldosh bilan boshlang.",
+    stepCard1Title: "🎯 O'zingizga mos safar — qulay narxda",
+    stepCard1Desc: "Jadvalingiz va byudjetingizga mos keladigan arzon va ishonchli yo'nalishni tanlang.",
+    stepCard2Title: "💰 Kim bilan safarga chiqayotganingizni biling",
+    stepCard2Desc: "Barcha haydovchilar pasport orqali tekshiruvdan o'tadi, shuning uchun safarlaringiz xavfsiz va ishonchli bo'ladi.",
+    stepCard3Title: "⚡ Scroll qiling, bosing va yo'lga chiqing!",
+    stepCard3Desc: "Intuitiv va tezkor ilovamiz orqali safarni bir necha soniyada bron qiling.",
+    readMore: "Read more",
     
     // Popular Routes
     popularRoutes: "Mashhur marshrutlar",
@@ -210,20 +202,16 @@ export const translations = {
     rating: "Rating",
     support: "Support",
     
-    // Travel Options
-    travelOptionsTitle: "What will you choose for your trip today?",
-    carWithPassengers: "Car with passengers",
-    carBenefit1: "✓ Share the cost of the trip to your destination",
-    carBenefit2: "✓ Trust your fellow passengers",
-    carBenefit3: "✓ We strive to get to know your future passengers as well as possible",
-    carBenefit4: "✓ Our app is easy to understand",
-    findTrip: "Find a trip",
-    becomeDriver: "Become a driver",
-    driverBenefit1: "✓ Save on gas by taking passengers",
-    driverBenefit2: "✓ Register a driver profile",
-    driverBenefit3: "✓ You can post a trip in a couple of minutes",
-    driverBenefit4: "✓ Travel and earn at the same time",
-    publishTrip: "Publish a trip",
+    // How It Works Steps
+    howItWorksStepsTitle: "How it works",
+    howItWorksStepsSubtitle: "Getting started is easy — follow a few simple steps and start your journey with Yo'ldosh.",
+    stepCard1Title: "🎯 Your perfect ride at the right price",
+    stepCard1Desc: "Choose from a wide range of affordable rides that fit your schedule and budget perfectly.",
+    stepCard2Title: "💰 Trust who you travel with",
+    stepCard2Desc: "All drivers are verified with their passport and profile check, so your rides are safe and worry-free.",
+    stepCard3Title: "⚡ Scroll, click, tap — and go!",
+    stepCard3Desc: "Book your ride in seconds through our simple and fast app.",
+    readMore: "Read more",
     
     // Popular Routes
     popularRoutes: "Popular routes",

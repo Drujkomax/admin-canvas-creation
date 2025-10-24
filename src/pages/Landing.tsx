@@ -213,52 +213,57 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Travel Options */}
+      {/* How It Works Steps */}
       <section className="py-20 px-4 bg-muted/30">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              {t('travelOptionsTitle')}
+              {t('howItWorksStepsTitle')}
             </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              {t('howItWorksStepsSubtitle')}
+            </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <Card className="border-border hover:border-primary transition-all hover:shadow-xl">
               <CardContent className="p-8 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <Car className="w-8 h-8 text-primary" />
-                </div>
                 <h3 className="text-2xl font-bold text-foreground">
-                  {t('carWithPassengers')}
+                  {t('stepCard1Title')}
                 </h3>
-                <div className="space-y-3 text-muted-foreground">
-                  <p>{t('carBenefit1')}</p>
-                  <p>{t('carBenefit2')}</p>
-                  <p>{t('carBenefit3')}</p>
-                  <p>{t('carBenefit4')}</p>
-                </div>
-                <Button className="w-full mt-4" size="lg">
-                  {t('findTrip')}
-                </Button>
+                <p className="text-muted-foreground">
+                  {t('stepCard1Desc')}
+                </p>
+                <a href="#" className="text-primary hover:underline inline-block">
+                  {t('readMore')}
+                </a>
               </CardContent>
             </Card>
 
             <Card className="border-border hover:border-primary transition-all hover:shadow-xl">
               <CardContent className="p-8 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <Users className="w-8 h-8 text-primary" />
-                </div>
                 <h3 className="text-2xl font-bold text-foreground">
-                  {t('becomeDriver')}
+                  {t('stepCard2Title')}
                 </h3>
-                <div className="space-y-3 text-muted-foreground">
-                  <p>{t('driverBenefit1')}</p>
-                  <p>{t('driverBenefit2')}</p>
-                  <p>{t('driverBenefit3')}</p>
-                  <p>{t('driverBenefit4')}</p>
-                </div>
-                <Button variant="outline" className="w-full mt-4" size="lg">
-                  {t('publishTrip')}
-                </Button>
+                <p className="text-muted-foreground">
+                  {t('stepCard2Desc')}
+                </p>
+                <a href="#" className="text-primary hover:underline inline-block">
+                  {t('readMore')}
+                </a>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border hover:border-primary transition-all hover:shadow-xl">
+              <CardContent className="p-8 space-y-4">
+                <h3 className="text-2xl font-bold text-foreground">
+                  {t('stepCard3Title')}
+                </h3>
+                <p className="text-muted-foreground">
+                  {t('stepCard3Desc')}
+                </p>
+                <a href="#" className="text-primary hover:underline inline-block">
+                  {t('readMore')}
+                </a>
               </CardContent>
             </Card>
           </div>
