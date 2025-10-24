@@ -39,6 +39,7 @@ export const translations = {
     
     // Popular Routes
     popularRoutes: "Популярные маршруты",
+    promo: "Акция",
     from: "От",
     sum: "сум",
     
@@ -127,6 +128,7 @@ export const translations = {
     
     // Popular Routes
     popularRoutes: "Mashhur marshrutlar",
+    promo: "Aksiya",
     from: "Dan",
     sum: "so'm",
     
@@ -215,6 +217,7 @@ export const translations = {
     
     // Popular Routes
     popularRoutes: "Popular routes",
+    promo: "Promo",
     from: "From",
     sum: "sum",
     

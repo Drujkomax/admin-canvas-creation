@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Car, Shield, Clock, Star, Users, MapPin, Calendar, User, Globe } from "lucide-react";
+import { Car, Shield, Clock, Star, Users, MapPin, Calendar, User, Globe, ArrowRight } from "lucide-react";
 import logo from "@/assets/yoldosh-logo.png";
+import routeTashkentSamarkand from "@/assets/route-tashkent-samarkand.jpg";
+import routeTashkentBukhara from "@/assets/route-tashkent-bukhara.jpg";
+import routeSamarkandBukhara from "@/assets/route-samarkand-bukhara.jpg";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Language } from "@/i18n/translations";
@@ -278,22 +281,60 @@ const Landing = () => {
               {t('popularRoutes')}
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[
-              { from: "Ташкент", to: "Самарканд", price: "45 000" },
-              { from: "Ташкент", to: "Бухара", price: "50 000" },
-              { from: "Самарканд", to: "Бухара", price: "35 000" },
+              { from: "Ташкент", to: "Самарканд", price: "45 000", image: routeTashkentSamarkand },
+              { from: "Ташкент", to: "Бухара", price: "50 000", image: routeTashkentBukhara },
+              { from: "Самарканд", to: "Бухара", price: "35 000", image: routeSamarkandBukhara },
             ].map((route, index) => (
-              <Card key={index} className="border-border hover:border-primary transition-all hover:shadow-lg cursor-pointer">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-lg font-semibold text-foreground">{route.from}</span>
-                    <MapPin className="w-5 h-5 text-primary" />
-                    <span className="text-lg font-semibold text-foreground">{route.to}</span>
+              <Card key={index} className="border-border hover:border-primary transition-all hover:shadow-xl cursor-pointer overflow-hidden group">
+                <CardContent className="p-0 relative">
+                  {/* Background Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={route.image} 
+                      alt={`${route.from} - ${route.to}`}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    {/* Promo Badge */}
+                    <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">
+                      {t('promo')}
+                    </div>
                   </div>
-                  <div className="text-center">
-                    <p className="text-sm text-muted-foreground">{t('from')}</p>
-                    <p className="text-2xl font-bold text-primary">{route.price} {t('sum')}</p>
+                  
+                  {/* Route Info */}
+                  <div className="p-6 bg-background">
+                    <div className="space-y-3 mb-4">
+                      {/* From Location */}
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 rounded-full border-2 border-primary flex-shrink-0 mt-1.5 bg-background"></div>
+                        <span className="text-base font-semibold text-foreground">{route.from}</span>
+                      </div>
+                      
+                      {/* Connecting Line */}
+                      <div className="flex items-center gap-3">
+                        <div className="w-3 flex justify-center">
+                          <div className="w-0.5 h-6 bg-border"></div>
+                        </div>
+                      </div>
+                      
+                      {/* To Location */}
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 rounded-full bg-muted-foreground flex-shrink-0 mt-1.5"></div>
+                        <span className="text-base font-semibold text-foreground">{route.to}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Price and Arrow */}
+                    <div className="flex items-center justify-between pt-4 border-t border-border">
+                      <div>
+                        <p className="text-xs text-muted-foreground">{t('from')}</p>
+                        <p className="text-2xl font-bold text-foreground">{route.price}<span className="text-sm font-normal text-muted-foreground ml-1">{t('sum')}</span></p>
+                      </div>
+                      <Button size="icon" className="rounded-full h-12 w-12 bg-primary hover:bg-primary/90">
+                        <ArrowRight className="w-5 h-5" />
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
