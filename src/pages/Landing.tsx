@@ -425,25 +425,25 @@ const Landing = () => {
               </p>
               
               {/* App Store Buttons */}
-              <div className="flex flex-wrap gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <a 
                   href="#" 
-                  className="inline-flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-black/80 transition-colors"
+                  className="inline-flex items-center gap-2 sm:gap-3 bg-black text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl hover:bg-black/80 transition-colors"
                 >
-                  <Apple className="w-8 h-8" />
+                  <Apple className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" />
                   <div className="text-left">
-                    <div className="text-xs">Download on the</div>
-                    <div className="text-lg font-semibold -mt-1">App Store</div>
+                    <div className="text-[10px] sm:text-xs whitespace-nowrap">Download on the</div>
+                    <div className="text-base sm:text-lg font-semibold -mt-0.5 sm:-mt-1 whitespace-nowrap">App Store</div>
                   </div>
                 </a>
                 <a 
                   href="#" 
-                  className="inline-flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-black/80 transition-colors"
+                  className="inline-flex items-center gap-2 sm:gap-3 bg-black text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl hover:bg-black/80 transition-colors"
                 >
-                  <Smartphone className="w-8 h-8" />
+                  <Smartphone className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" />
                   <div className="text-left">
-                    <div className="text-xs">{t('downloadGooglePlay').split(' ')[0]}</div>
-                    <div className="text-lg font-semibold -mt-1">Google Play</div>
+                    <div className="text-[10px] sm:text-xs whitespace-nowrap">{t('downloadGooglePlay').split(' ')[0]}</div>
+                    <div className="text-base sm:text-lg font-semibold -mt-0.5 sm:-mt-1 whitespace-nowrap">Google Play</div>
                   </div>
                 </a>
               </div>
