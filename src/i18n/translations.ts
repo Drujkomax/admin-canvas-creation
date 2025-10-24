@@ -70,9 +70,11 @@ export const translations = {
     step3Desc: "Водитель приедет за несколько минут",
     
     // CTA
-    ctaTitle: "Готовы начать путешествие с",
-    ctaSubtitle: "Присоединяйтесь к тысячам пользователей, которые уже оценили удобство нашего сервиса",
-    learnMore: "Узнать больше",
+    ctaTitle: "Путешествовать удобнее с приложением",
+    ctaSubtitle: "Установите мобильное приложение Yo'ldosh для поиска попутчиков. С ним вы всегда будете в курсе актуальной информации о ваших поездках. Общайтесь с попутчиками, получайте напоминания о поездке, просматривайте купленные билеты на автобус и пользуйтесь другими полезными функциями прямо на вашем смартфоне",
+    ctaDescription: "С приложением Yo'ldosh история ваших поездок всегда под рукой!",
+    downloadAppStore: "Download on the App Store",
+    downloadGooglePlay: "Скачать из Google Play",
     
     // Footer
     footerTagline: "Ваш надежный спутник в пути",
@@ -159,9 +161,11 @@ export const translations = {
     step3Desc: "Haydovchi bir necha daqiqada keladi",
     
     // CTA
-    ctaTitle: "bilan sayohatni boshlashga tayyormisiz",
-    ctaSubtitle: "Xizmatimizning qulayligini allaqachon baholagan minglab foydalanuvchilarga qo'shiling",
-    learnMore: "Ko'proq bilish",
+    ctaTitle: "Ilovamiz bilan sayohat qilish qulayroq",
+    ctaSubtitle: "Yo'lovchilarni topish uchun Yo'ldosh mobil ilovasini o'rnating. U bilan siz doimo safarlaringiz haqida eng so'nggi ma'lumotlarga ega bo'lasiz. Yo'lovchilar bilan muloqot qiling, safar haqida eslatmalar oling, sotib olingan avtobusga chiptalarni ko'ring va boshqa foydali funksiyalardan to'g'ridan-to'g'ri smartfoningizda foydalaning",
+    ctaDescription: "Yo'ldosh ilovasi bilan safarlaringiz tarixi doim qo'lingizda!",
+    downloadAppStore: "Download on the App Store",
+    downloadGooglePlay: "Google Play'dan yuklab olish",
     
     // Footer
     footerTagline: "Yo'lda ishonchli hamrohingiz",
@@ -248,9 +252,11 @@ export const translations = {
     step3Desc: "The driver will arrive in a few minutes",
     
     // CTA
-    ctaTitle: "Ready to start your journey with",
-    ctaSubtitle: "Join thousands of users who have already appreciated the convenience of our service",
-    learnMore: "Learn more",
+    ctaTitle: "Travel more conveniently with the app",
+    ctaSubtitle: "Install the Yo'ldosh mobile app to find passengers. With it, you will always be up to date on your trips. Chat with passengers, receive ride reminders, view purchased bus tickets, and use other useful features right on your smartphone",
+    ctaDescription: "With the Yo'ldosh app, your trip history is always at hand!",
+    downloadAppStore: "Download on the App Store",
+    downloadGooglePlay: "Download on Google Play",
     
     // Footer
     footerTagline: "Your reliable companion on the road",

@@ -2,11 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Car, Shield, Clock, Star, Users, MapPin, Calendar, User, Globe, ArrowRight } from "lucide-react";
+import { Car, Shield, Clock, Star, Users, MapPin, Calendar, User, Globe, ArrowRight, Apple, Smartphone } from "lucide-react";
 import logo from "@/assets/yoldosh-logo.png";
 import routeTashkentSamarkand from "@/assets/route-tashkent-samarkand.jpg";
 import routeTashkentBukhara from "@/assets/route-tashkent-bukhara.jpg";
 import routeSamarkandBukhara from "@/assets/route-samarkand-bukhara.jpg";
+import phoneMockup from "@/assets/phone-mockup.png";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Language } from "@/i18n/translations";
@@ -408,22 +409,55 @@ const Landing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-primary/5">
+      <section className="py-20 px-4 bg-gradient-to-br from-primary via-primary to-primary/80">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl lg:text-5xl font-bold text-foreground">
-              {t('ctaTitle')} <span className="text-primary">Yo'ldosh</span>?
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              {t('ctaSubtitle')}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" className="text-lg px-8">
-                {t('downloadApp')}
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8">
-                {t('learnMore')}
-              </Button>
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Left Content */}
+            <div className="space-y-6 text-white">
+              <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+                {t('ctaTitle')} <span className="text-white/90">Yo'ldosh</span>
+              </h2>
+              <p className="text-lg text-white/90 leading-relaxed">
+                {t('ctaSubtitle')}
+              </p>
+              <p className="text-base text-white/80 italic">
+                {t('ctaDescription')}
+              </p>
+              
+              {/* App Store Buttons */}
+              <div className="flex flex-wrap gap-4 pt-4">
+                <a 
+                  href="#" 
+                  className="inline-flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-black/80 transition-colors"
+                >
+                  <Apple className="w-8 h-8" />
+                  <div className="text-left">
+                    <div className="text-xs">Download on the</div>
+                    <div className="text-lg font-semibold -mt-1">App Store</div>
+                  </div>
+                </a>
+                <a 
+                  href="#" 
+                  className="inline-flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-black/80 transition-colors"
+                >
+                  <Smartphone className="w-8 h-8" />
+                  <div className="text-left">
+                    <div className="text-xs">{t('downloadGooglePlay').split(' ')[0]}</div>
+                    <div className="text-lg font-semibold -mt-1">Google Play</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            {/* Right Content - Phone Mockup */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative">
+                <img 
+                  src={phoneMockup} 
+                  alt="Yo'ldosh App" 
+                  className="w-64 lg:w-80 drop-shadow-2xl"
+                />
+              </div>
             </div>
           </div>
         </div>
