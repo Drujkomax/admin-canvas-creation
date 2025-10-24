@@ -344,6 +344,59 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Safety Warning Section */}
+      <section id="safety" className="py-20 px-4 bg-primary">
+        <div className="container mx-auto max-w-4xl">
+          <Card className="border-0 shadow-2xl overflow-hidden bg-white">
+            <CardContent className="p-8 md:p-12">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-6 h-6 text-primary" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                  Помогите нам защитить вас от мошенников
+                </h2>
+              </div>
+              
+              <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+                <p>
+                  Мы в <span className="text-primary font-semibold">Yo'ldosh</span> делаем всё, чтобы ваши поездки были безопасными. Но иногда мошенники пытаются использовать доверие пользователей.
+                </p>
+                
+                <div className="bg-gray-50 rounded-lg p-6 space-y-4">
+                  <p className="font-semibold text-gray-900 text-xl mb-4">Чтобы защитить себя:</p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2"></div>
+                      <span>Общайтесь и оплачивайте поездки только через приложение Yo'ldosh.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2"></div>
+                      <span>Никому не сообщайте коды из SMS, PIN и данные банковской карты.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2"></div>
+                      <span>Проверяйте рейтинги и отзывы водителей и пассажиров.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2"></div>
+                      <span>Если заметили что-то подозрительное — сообщите нам, и мы сразу разберёмся.</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <p className="font-semibold text-gray-900 text-xl pt-4">
+                  Безопасность — это наша общая ответственность.
+                </p>
+                <p>
+                  Будьте внимательны, и каждая поездка с <span className="text-primary font-semibold">Yo'ldosh</span> будет спокойной и надёжной.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Popular Routes */}
       <section className="py-20 px-4">
         <div className="container mx-auto">
@@ -486,59 +539,6 @@ const Landing = () => {
               </Card>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Safety Warning Section */}
-      <section id="safety" className="py-20 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="border-border shadow-xl overflow-hidden">
-            <CardContent className="p-8 md:p-12">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-6 h-6 text-primary" />
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                  Помогите нам защитить вас от мошенников
-                </h2>
-              </div>
-              
-              <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
-                <p>
-                  Мы в <span className="text-primary font-semibold">Yo'ldosh</span> делаем всё, чтобы ваши поездки были безопасными. Но иногда мошенники пытаются использовать доверие пользователей.
-                </p>
-                
-                <div className="bg-muted/50 rounded-lg p-6 space-y-4">
-                  <p className="font-semibold text-foreground text-xl mb-4">Чтобы защитить себя:</p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2"></div>
-                      <span>Общайтесь и оплачивайте поездки только через приложение Yo'ldosh.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2"></div>
-                      <span>Никому не сообщайте коды из SMS, PIN и данные банковской карты.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2"></div>
-                      <span>Проверяйте рейтинги и отзывы водителей и пассажиров.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2"></div>
-                      <span>Если заметили что-то подозрительное — сообщите нам, и мы сразу разберёмся.</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <p className="font-semibold text-foreground text-xl pt-4">
-                  Безопасность — это наша общая ответственность.
-                </p>
-                <p>
-                  Будьте внимательны, и каждая поездка с <span className="text-primary font-semibold">Yo'ldosh</span> будет спокойной и надёжной.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </section>
 
