@@ -2,11 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Car, Shield, Clock, Star, Users, MapPin, Search, Calendar, ArrowRight, User } from "lucide-react";
+import { Car, Shield, Clock, Star, Users, MapPin, Calendar, User, Globe } from "lucide-react";
 import logo from "@/assets/yoldosh-logo.png";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Language } from "@/i18n/translations";
 
 const Landing = () => {
+  const { language, setLanguage, t } = useLanguage();
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [date, setDate] = useState("");
@@ -20,42 +23,56 @@ const Landing = () => {
   const features = [
     {
       icon: Car,
-      title: "Быстрые поездки",
-      description: "Найдите водителя за считанные минуты в любой точке города"
+      title: t('fastTrips'),
+      description: t('fastTripsDesc')
     },
     {
       icon: Shield,
-      title: "Безопасность",
-      description: "Все водители проходят тщательную проверку и верификацию"
+      title: t('security'),
+      description: t('securityDesc')
     },
     {
       icon: Clock,
-      title: "Экономия времени",
-      description: "Оптимальные маршруты и минимальное время ожидания"
+      title: t('timeSaving'),
+      description: t('timeSavingDesc')
     },
     {
       icon: Star,
-      title: "Высокий рейтинг",
-      description: "Система оценок гарантирует качество обслуживания"
+      title: t('highRating'),
+      description: t('highRatingDesc')
     },
     {
       icon: Users,
-      title: "Сообщество",
-      description: "Тысячи довольных пассажиров и водителей"
+      title: t('community'),
+      description: t('communityDesc')
     },
     {
       icon: MapPin,
-      title: "Везде доступно",
-      description: "Работаем во всех районах города 24/7"
+      title: t('available'),
+      description: t('availableDesc')
     }
   ];
 
   const stats = [
-    { value: "50K+", label: "Поездок" },
-    { value: "10K+", label: "Водителей" },
-    { value: "4.9", label: "Рейтинг" },
-    { value: "24/7", label: "Поддержка" }
+    { value: "50K+", label: t('trips') },
+    { value: "10K+", label: t('drivers') },
+    { value: "4.9", label: t('rating') },
+    { value: "24/7", label: t('support') }
   ];
+
+  const getPassengerLabel = (count: string) => {
+    const num = parseInt(count);
+    if (language === 'en') {
+      return num === 1 ? t('passengers') : t('passengers2');
+    }
+    if (language === 'uz') {
+      return `${num} ${t('passengers')}`;
+    }
+    // Russian
+    if (num === 1) return `${num} ${t('passengers')}`;
+    if (num >= 2 && num <= 4) return `${num} ${t('passengers2')}`;
+    return `${num} ${t('passengers')}`;
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -68,18 +85,30 @@ const Landing = () => {
           </div>
           <nav className="hidden md:flex items-center gap-6">
             <a href="#features" className="text-foreground hover:text-primary transition-colors">
-              Преимущества
+              {t('features')}
             </a>
             <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors">
-              Как это работает
+              {t('howItWorks')}
             </a>
             <a href="#contact" className="text-foreground hover:text-primary transition-colors">
-              Контакты
+              {t('contacts')}
             </a>
           </nav>
           <div className="flex items-center gap-3">
-            <Button variant="ghost">Войти</Button>
-            <Button>Скачать приложение</Button>
+            <Select value={language} onValueChange={(value) => setLanguage(value as Language)}>
+              <SelectTrigger className="w-[140px] border-border">
+                <div className="flex items-center gap-2">
+                  <Globe className="w-4 h-4" />
+                  <SelectValue />
+                </div>
+              </SelectTrigger>
+              <SelectContent className="bg-background border-border">
+                <SelectItem value="ru">Русский</SelectItem>
+                <SelectItem value="uz">O'zbekcha</SelectItem>
+                <SelectItem value="en">English</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button>{t('downloadApp')}</Button>
           </div>
         </div>
       </header>
@@ -89,10 +118,10 @@ const Landing = () => {
         <div className="container mx-auto">
           <div className="text-center space-y-6 mb-12">
             <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight">
-              Поездки на ваш выбор по низким ценам
+              {t('heroTitle')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Найдите попутчиков или станьте водителем с <span className="text-primary font-semibold">Yo'ldosh</span>
+              {t('heroSubtitle')} <span className="text-primary font-semibold">Yo'ldosh</span>
             </p>
           </div>
 
@@ -105,7 +134,7 @@ const Landing = () => {
               </div>
               <div className="flex-1 min-w-0">
                 <Input 
-                  placeholder="Откуда" 
+                  placeholder={t('searchPlaceholderFrom')}
                   value={from}
                   onChange={(e) => setFrom(e.target.value)}
                   className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground"
@@ -122,7 +151,7 @@ const Landing = () => {
               </div>
               <div className="flex-1 min-w-0">
                 <Input 
-                  placeholder="Куда" 
+                  placeholder={t('searchPlaceholderTo')}
                   value={to}
                   onChange={(e) => setTo(e.target.value)}
                   className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground"
@@ -140,7 +169,7 @@ const Landing = () => {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 className="border-0 bg-transparent p-0 h-auto text-base font-medium focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer"
-                placeholder="Сегодня"
+                placeholder={t('searchDate')}
               />
             </div>
 
@@ -151,13 +180,13 @@ const Landing = () => {
               <User className="w-5 h-5 text-muted-foreground flex-shrink-0" />
               <Select value={passengers} onValueChange={setPassengers}>
                 <SelectTrigger className="border-0 bg-transparent p-0 h-auto text-base font-medium focus:ring-0 focus:ring-offset-0 [&>span]:text-left">
-                  <SelectValue placeholder="1 пассажир" />
+                  <SelectValue placeholder={getPassengerLabel("1")} />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1">1 пассажир</SelectItem>
-                  <SelectItem value="2">2 пассажира</SelectItem>
-                  <SelectItem value="3">3 пассажира</SelectItem>
-                  <SelectItem value="4">4 пассажира</SelectItem>
+                <SelectContent className="bg-background border-border">
+                  <SelectItem value="1">{getPassengerLabel("1")}</SelectItem>
+                  <SelectItem value="2">{getPassengerLabel("2")}</SelectItem>
+                  <SelectItem value="3">{getPassengerLabel("3")}</SelectItem>
+                  <SelectItem value="4">{getPassengerLabel("4")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -168,7 +197,7 @@ const Landing = () => {
               size="lg" 
               className="rounded-full px-12 py-6 text-lg font-semibold bg-primary hover:bg-primary/90 transition-all h-auto"
             >
-              Поиск
+              {t('search')}
             </Button>
           </div>
 
@@ -189,7 +218,7 @@ const Landing = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Что вы выберете для поездки сегодня?
+              {t('travelOptionsTitle')}
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -199,16 +228,16 @@ const Landing = () => {
                   <Car className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground">
-                  Машина с попутчиками
+                  {t('carWithPassengers')}
                 </h3>
                 <div className="space-y-3 text-muted-foreground">
-                  <p>✓ Разделите расходы на поездку до вашего места назначения</p>
-                  <p>✓ Доверяйте своим попутчикам</p>
-                  <p>✓ Мы стараемся узнать ваших будущих попутчиков как можно лучше</p>
-                  <p>✓ В нашем приложении легко разобраться</p>
+                  <p>{t('carBenefit1')}</p>
+                  <p>{t('carBenefit2')}</p>
+                  <p>{t('carBenefit3')}</p>
+                  <p>{t('carBenefit4')}</p>
                 </div>
                 <Button className="w-full mt-4" size="lg">
-                  Найти поездку
+                  {t('findTrip')}
                 </Button>
               </CardContent>
             </Card>
@@ -219,16 +248,16 @@ const Landing = () => {
                   <Users className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground">
-                  Стать водителем
+                  {t('becomeDriver')}
                 </h3>
                 <div className="space-y-3 text-muted-foreground">
-                  <p>✓ Экономьте на бензине, беря попутчиков</p>
-                  <p>✓ Зарегистрируйте профиль водителя</p>
-                  <p>✓ Опубликовать поездку можно за пару минут</p>
-                  <p>✓ Путешествуйте и зарабатывайте одновременно</p>
+                  <p>{t('driverBenefit1')}</p>
+                  <p>{t('driverBenefit2')}</p>
+                  <p>{t('driverBenefit3')}</p>
+                  <p>{t('driverBenefit4')}</p>
                 </div>
                 <Button variant="outline" className="w-full mt-4" size="lg">
-                  Опубликовать поездку
+                  {t('publishTrip')}
                 </Button>
               </CardContent>
             </Card>
@@ -241,7 +270,7 @@ const Landing = () => {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Популярные маршруты
+              {t('popularRoutes')}
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -258,8 +287,8 @@ const Landing = () => {
                     <span className="text-lg font-semibold text-foreground">{route.to}</span>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground">От</p>
-                    <p className="text-2xl font-bold text-primary">{route.price} сум</p>
+                    <p className="text-sm text-muted-foreground">{t('from')}</p>
+                    <p className="text-2xl font-bold text-primary">{route.price} {t('sum')}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -273,10 +302,10 @@ const Landing = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Почему выбирают <span className="text-primary">Yo'ldosh</span>
+              {t('whyChoose')} <span className="text-primary">Yo'ldosh</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Мы создали сервис, который делает поездки простыми и приятными
+              {t('whyChooseSubtitle')}
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -304,17 +333,17 @@ const Landing = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Как это работает
+              {t('howItWorksTitle')}
             </h2>
             <p className="text-xl text-muted-foreground">
-              Всего три простых шага
+              {t('howItWorksSubtitle')}
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { step: "01", title: "Скачайте приложение", desc: "Установите Yo'ldosh на свой смартфон" },
-              { step: "02", title: "Выберите маршрут", desc: "Укажите откуда и куда нужно поехать" },
-              { step: "03", title: "Наслаждайтесь поездкой", desc: "Водитель приедет за несколько минут" }
+              { step: "01", title: t('step1'), desc: t('step1Desc') },
+              { step: "02", title: t('step2'), desc: t('step2Desc') },
+              { step: "03", title: t('step3'), desc: t('step3Desc') }
             ].map((item, index) => (
               <div key={index} className="text-center space-y-4">
                 <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto">
@@ -337,17 +366,17 @@ const Landing = () => {
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground">
-              Готовы начать путешествие с <span className="text-primary">Yo'ldosh</span>?
+              {t('ctaTitle')} <span className="text-primary">Yo'ldosh</span>?
             </h2>
             <p className="text-xl text-muted-foreground">
-              Присоединяйтесь к тысячам пользователей, которые уже оценили удобство нашего сервиса
+              {t('ctaSubtitle')}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" className="text-lg px-8">
-                Скачать приложение
+                {t('downloadApp')}
               </Button>
               <Button size="lg" variant="outline" className="text-lg px-8">
-                Узнать больше
+                {t('learnMore')}
               </Button>
             </div>
           </div>
@@ -361,36 +390,36 @@ const Landing = () => {
             <div className="space-y-4">
               <img src={logo} alt="Yo'ldosh" className="h-8 w-auto" />
               <p className="text-muted-foreground">
-                Ваш надежный спутник в пути
+                {t('footerTagline')}
               </p>
             </div>
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Продукт</h4>
+              <h4 className="font-semibold text-foreground mb-4">{t('product')}</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Для пассажиров</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Для водителей</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Цены</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t('forPassengers')}</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t('forDrivers')}</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t('prices')}</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Компания</h4>
+              <h4 className="font-semibold text-foreground mb-4">{t('company')}</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">О нас</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Карьера</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Блог</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t('aboutUs')}</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t('career')}</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t('blog')}</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Поддержка</h4>
+              <h4 className="font-semibold text-foreground mb-4">{t('supportTitle')}</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Помощь</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Контакты</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Безопасность</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t('help')}</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t('contactsFooter')}</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t('safety')}</a></li>
               </ul>
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-border text-center text-muted-foreground">
-            <p>&copy; 2025 Yo'ldosh. Все права защищены.</p>
+            <p>&copy; 2025 Yo'ldosh. {t('copyright')}</p>
           </div>
         </div>
       </footer>

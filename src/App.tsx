@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AdminLayout } from "./components/Layout/AdminLayout";
 import Dashboard from "./pages/Dashboard";
 import Drivers from "./pages/Drivers";
@@ -22,10 +23,11 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
+      <LanguageProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/admin" element={<AdminLayout><Dashboard /></AdminLayout>} />
@@ -39,8 +41,9 @@ const App = () => (
           <Route path="/admin/passenger-search" element={<AdminLayout><PassengerSearch /></AdminLayout>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-      </TooltipProvider>
+        </BrowserRouter>
+        </TooltipProvider>
+      </LanguageProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );
